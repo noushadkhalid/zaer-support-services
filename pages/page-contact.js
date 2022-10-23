@@ -11,7 +11,7 @@ function Contact() {
     const [data, setData] = useState('')
     const router = useRouter();
 
-    
+
     async function handleOnSubmit(e){
 
         e.preventDefault();
@@ -20,25 +20,42 @@ function Contact() {
             if (!field.name) return;
             formData[field.name] = field.value
             setData(formData)
-         })
-         fetch('http://127.0.0.1:8000/contact/', {
-             method:'post',
-             body:JSON.stringify(formData),
-             headers:{'Content-Type': 'application/json'},
+        })
+        fetch('api/mail',{
+            method:'post',
+            body:JSON.stringify(formData)
+        })
+
+    }
+
+    
+    // async function handleOnSubmit(e){
+
+    //     e.preventDefault();
+    //     const formData = {}
+    //     Array.from(e.currentTarget.elements).forEach(field =>{
+    //         if (!field.name) return;
+    //         formData[field.name] = field.value
+    //         setData(formData)
+    //      })
+    //      fetch('http://127.0.0.1:8000/contact/', {
+    //          method:'post',
+    //          body:JSON.stringify(formData),
+    //          headers:{'Content-Type': 'application/json'},
         
 
-        }
-        ).then(res=>res.json()).then(res => console.log(res)).catch(error=>console.log(error))
-    //    const options = {
-    //          method:'post',
-    //          body:JSON.stringify(formData)
-    //    }
-    //    fetch('http://127.0.0.1:8000/contact/', options).
-    //    then(res=>res.json()).then(res => console.log(res).catch(error=>console.log(error))
-        router.push('/')
+    //     }
+    //     ).then(res=>res.json()).then(res => console.log(res)).catch(error=>console.log(error))
+    // //    const options = {
+    // //          method:'post',
+    // //          body:JSON.stringify(formData)
+    // //    }
+    // //    fetch('http://127.0.0.1:8000/contact/', options).
+    // //    then(res=>res.json()).then(res => console.log(res).catch(error=>console.log(error))
+    //     router.push('/')
        
         
-    }
+    // }
     return (
         <>
             <Layout>
@@ -70,19 +87,19 @@ function Contact() {
                                     <div className="col-lg-8">
                                         <div className="row">
                                             <div className="col-lg-6">
-                                                <div className="form-group"><input className="form-control"  placeholder="Enter your name" name="name" /></div>
+                                                <div className="form-group"><input className="form-control"  placeholder="Enter your name" name="name" required /></div>
                                             </div>
                                             <div className="col-lg-6">
-                                                <div className="form-group"><input className="form-control"  placeholder="Company (optional)" name="company" /></div>
+                                                <div className="form-group"><input className="form-control"  placeholder="Company (optional)" name="company"  /></div>
                                             </div>
                                             <div className="col-lg-6">
-                                                <div className="form-group"><input className="form-control"  placeholder="Your email"  name="email" /></div>
+                                                <div className="form-group"><input className="form-control"  placeholder="Your email"  name="email" required /></div>
                                             </div>
                                             <div className="col-lg-6">
                                                 <div className="form-group"><input className="form-control"  placeholder="Phone number" name="phone" /></div>
                                             </div>
                                             <div className="col-lg-12">
-                                                <div className="form-group"><textarea className="form-control" placeholder="Enter your message"  name="message" /></div>
+                                                <div className="form-group"><textarea className="form-control" placeholder="Enter your message"  name="message" required /></div>
                                             </div>
                                             <div className="col-lg-12 mt-15"><button className="btn btn-black  mr-40 mb-20" type="submit">Send Message</button><br className="d-lg-none d-block" /><span className="text-body-text-md color-gray-500 mb-20">By clicking contact us button, you agree our terms and policy,</span></div>
                                         </div>

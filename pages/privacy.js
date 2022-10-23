@@ -52,8 +52,8 @@ const privacy = () => {
             If you have any queries or complaints about our Privacy Policy please contact us at:
 
             Tarneit Victoria
-            support@zaer.com.au
-            0424 --- --- </p>
+            zaer.services@gmail.com
+            0420 535 983 </p>
             
                              </div>
                             </div>
