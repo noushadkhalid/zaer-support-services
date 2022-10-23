@@ -20,6 +20,7 @@ function Contact() {
             if (!field.name) return;
             formData[field.name] = field.value
             setData(formData)
+            router.push('/thank-you')
         })
         fetch('api/mail',{
             method:'post',

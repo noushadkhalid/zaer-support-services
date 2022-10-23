@@ -204,7 +204,7 @@ const Footer = () => {
                                     <Link href="https://twitter.com">
                                         <a className="icon-socials icon-twitter"target="_blank"></a>
                                     </Link>
-                                    <Link href="https://www.instagram.com/codeteki.com.au/">
+                                    <Link href="https://www.instagram.com/">
                                         <a className="icon-socials icon-instagram" target="_blank"></a>
                                     </Link>
                                     <Link href="https://www.linkedin.com">
