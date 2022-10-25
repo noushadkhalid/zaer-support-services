@@ -1,62 +1,31 @@
 
 import Layout from "../components/layout/Layout";
-import {useState} from 'react'
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { useRouter } from "next/router";
 
 
 
 
 
+
 function Contact() {
-    const [data, setData] = useState('')
+    const form = useRef();
     const router = useRouter();
 
-
-    async function handleOnSubmit(e){
-
-        e.preventDefault();
-        const formData = {}
-        Array.from(e.currentTarget.elements).forEach(field =>{
-            if (!field.name) return;
-            formData[field.name] = field.value
-            setData(formData)
+    const sendEmail = (e) => {
+      e.preventDefault();
+      emailjs.sendForm('service_h068w6m', 'template_sl9gh5i', form.current, '7SnI2ihiJF5t3LjUY')
+        .then((result) => {
+            console.log(result.text);
             router.push('/thank-you')
-        })
-        fetch('api/mail',{
-            method:'post',
-            body:JSON.stringify(formData)
-        })
+        }, (error) => {
+            console.log(error.text);
+        });
 
-    }
+    };
 
-    
-    // async function handleOnSubmit(e){
-
-    //     e.preventDefault();
-    //     const formData = {}
-    //     Array.from(e.currentTarget.elements).forEach(field =>{
-    //         if (!field.name) return;
-    //         formData[field.name] = field.value
-    //         setData(formData)
-    //      })
-    //      fetch('http://127.0.0.1:8000/contact/', {
-    //          method:'post',
-    //          body:JSON.stringify(formData),
-    //          headers:{'Content-Type': 'application/json'},
-        
-
-    //     }
-    //     ).then(res=>res.json()).then(res => console.log(res)).catch(error=>console.log(error))
-    // //    const options = {
-    // //          method:'post',
-    // //          body:JSON.stringify(formData)
-    // //    }
-    // //    fetch('http://127.0.0.1:8000/contact/', options).
-    // //    then(res=>res.json()).then(res => console.log(res).catch(error=>console.log(error))
-    //     router.push('/')
-       
-        
-    // }
+  
     return (
         <>
             <Layout>
@@ -84,7 +53,7 @@ function Contact() {
                                     <p className="text-body-text color-gray-600" >Tel: 0420 535 983</p>
                                     <p className="text-body-text color-gray-600">zaer.services@gmail.com</p>
                                 </div>
-                                <form action="post" onSubmit={handleOnSubmit}>
+                                <form  ref={form} onSubmit={sendEmail}>
                                     <div className="col-lg-8">
                                         <div className="row">
                                             <div className="col-lg-6">
